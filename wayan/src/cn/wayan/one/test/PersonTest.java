@@ -1,10 +1,6 @@
 package cn.wayan.one.test;
 
-import cn.wayan.one.learn.Person;
 import org.junit.Test;
-
-import java.io.*;
-import java.util.Properties;
 
 public class PersonTest {
 

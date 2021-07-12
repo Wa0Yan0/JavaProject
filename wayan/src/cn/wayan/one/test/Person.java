@@ -1,4 +1,4 @@
-package cn.wayan.one.learn;
+package cn.wayan.one.test;
 
 public class Person {
     private String name;
