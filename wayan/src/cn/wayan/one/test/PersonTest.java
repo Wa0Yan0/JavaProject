@@ -1,13 +1,12 @@
 package cn.wayan.one.test;
 
+import com.mysql.cj.jdbc.Driver;
 import org.junit.Test;
 
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.Driver;
 import java.sql.DriverManager;
 import java.util.Properties;
-
+import java.sql.Connection;
 public class PersonTest {
 
     @Test
