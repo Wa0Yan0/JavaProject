@@ -16,5 +16,6 @@ public class PersonTest {
         System.out.println("合并分支");
         System.out.println("master test");
         System.out.println("hot-fix test");
+        System.out.println("push test");
     }
 }
