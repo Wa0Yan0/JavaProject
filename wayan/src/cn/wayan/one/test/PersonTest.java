@@ -14,5 +14,6 @@ public class PersonTest {
         Person person2 = Person.class.getDeclaredConstructor().newInstance();
         System.out.println(person);
         System.out.println("合并分支");
+        System.out.println("hot-fix test");
     }
 }
