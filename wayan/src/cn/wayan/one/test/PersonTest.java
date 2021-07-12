@@ -10,5 +10,6 @@ public class PersonTest {
         Person person2 = Person.class.getDeclaredConstructor().newInstance();
         System.out.println(person);
         System.out.println("测试完毕");
+        System.out.println("ssh pull");
     }
 }
