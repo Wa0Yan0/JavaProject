@@ -1,5 +1,6 @@
 package cn.wayan.one.test;
 
+import cn.wayan.util.JDBCUtils;
 import org.junit.Test;
 
 import java.io.InputStream;
@@ -15,65 +16,30 @@ public class PersonTest {
         Connection conn = null;
         PreparedStatement ps = null;
         try{
-            /**
-             * 读取配置文件中的数据
-             */
-            // 使用类构造器将配置文件变成字符流
-            InputStream is = ClassLoader.getSystemClassLoader().getResourceAsStream("MySQL.properties");
-            // 创建properties集合存储字符流，含有key和value
-            Properties pros = new Properties();
-            // 将字符流加载到集合中
-            pros.load(is);
-            // 通过key来获取value
-            String user = pros.getProperty("user");
-            String password = pros.getProperty("password");
-            String url = pros.getProperty("url");
-            String driverClass = pros.getProperty("driverClass");
-
-            /**
-             * 连接数据库
-             */
-            // 加载驱动
-            Class.forName(driverClass);
-            // 获取连接
-            conn = DriverManager.getConnection(url,user,password);
+            conn = JDBCUtils.getConnection();
             System.out.println(conn);
 
             /**
              * 预编译sql语句
              */
-            String sql = "insert into customers(name,email,birth) values(?,?,?)";
+            String sql = "update customers set name = ? where id = ?";
             ps = conn.prepareStatement(sql);
 
             /**
              * 填充数据
              */
-            ps.setString(1,"王岩");
-            ps.setString(2,"wayan@gmail.com");
-            // 日期转化
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = sdf.parse("1999-10-28");
-            ps.setDate(3,new java.sql.Date(date.getTime()));
+            ps.setObject(1,"高勋");
+            ps.setObject(2,18);
 
             /**
              * 执行
              */
             ps.execute();
-            System.out.println("插入成功");
+            System.out.println("跟新成功");
         }catch (Exception e){
             e.printStackTrace();
         }finally {
-            /**
-             * 释放资源
-             */
-            try {
-                if(ps!=null)
-                    ps.close();
-                if(conn!=null)
-                    conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            JDBCUtils.closeResource(conn,ps);
         }
 
     }
