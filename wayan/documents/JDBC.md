@@ -6,7 +6,7 @@
 * 读取配置文件中的数据
 */
 // 使用类构造器将配置文件变成字符流
-InputStream is = PersonTest.class.getClassLoader().getResourceAsStream("MySQL.properties");
+InputStream is = ClassLoader.getSystemClassLoader().getResourceAsStream("MySQL.properties");
 // 创建properties集合存储字符流，含有key和value
 Properties pros = new Properties();
 // 将字符流加载到集合中
